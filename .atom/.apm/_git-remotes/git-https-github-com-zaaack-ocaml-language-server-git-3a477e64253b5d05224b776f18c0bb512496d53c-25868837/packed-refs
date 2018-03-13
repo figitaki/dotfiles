@@ -1,0 +1,7 @@
+# pack-refs with: peeled fully-peeled 
+3a477e64253b5d05224b776f18c0bb512496d53c refs/heads/atom-temp
+bf8d2529b3c6c9856ab4ce1cc48069b8382e53c7 refs/heads/launch-in-project-root
+7a5e6ad5e1c66c54678c052bf98184fb64467e69 refs/heads/master
+78c08047812241e4b2effc79ad78ce91f47741d5 refs/heads/ocaml-port
+39696f3ff32bf94a70b71e32976b6b1027e6dac0 refs/heads/other-editors
+705627da3345792fadb81760bc47c81814adfadc refs/tags/v0.2.0
