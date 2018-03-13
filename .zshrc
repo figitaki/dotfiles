@@ -1,24 +1,12 @@
-# Custom path
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=/usr/local/bin:~/Library/Python/2.7/bin:$PATH
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export EDITOR=/usr/local/bin/vim
-
-# Enable thefuck
-eval $(thefuck --alias)
-
-eval "$(hub alias -s)"
-
-eval "$(rbenv init -)"
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:$HOME/go/bin:/usr/local/bin:/usr/local/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/figitaki/.oh-my-zsh
+  export ZSH=/home/figitaki/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="hyperzsh"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -35,7 +23,7 @@ ZSH_THEME="hyperzsh"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -65,12 +53,11 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git npm sudo node fasd zsh-autosuggestions zsh-syntax-highlighting)
 
+source $ZSH/oh-my-zsh.sh
+
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -86,7 +73,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -96,10 +83,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# Use hub in place of git
 
-# Enable aws autocompletion
-source /Users/figitaki/Library/Python/2.7/bin/aws_zsh_completer.sh
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+alias z='fasd_cd -d'
