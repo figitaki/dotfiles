@@ -15,6 +15,11 @@ call pathogen#helptags()
 syntax on
 colorscheme onedark       " cool colorscheme
 
+" Disable the background color
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight CursorLine ctermbg=none
+
 set encoding=utf-8
 
 let g:airline_theme='onedark'
@@ -42,6 +47,10 @@ set listchars=eol:¬,tab:»-,space:·
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
+" Shortcut to launch Vimux prompt
+map <leader>vp :VimuxPromptCommand<CR>
+map <leader>vl :VimuxRunLastCommand<CR>
+
 set number              " enable line numbers
 set cursorline          " highlights current row
 set wildmenu            " visual autocomplete for command menu
@@ -65,6 +74,9 @@ set foldmethod=indent   " fold off of current indent
 
 set backspace=2         " make backspace work like most other apps
 
+let g:javascript_plugin_flow = 1
+let g:javascript_plugin_jsdoc = 1
+
 " easier split navigations
 noremap <C-J> <C-W><C-J>
 noremap <C-K> <C-W><C-K>
@@ -74,11 +86,16 @@ noremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+" easier buffer navigations
+noremap <leader>] :bn<CR>
+noremap <leader>[ :bp<CR>
+noremap <leader>x :bd<CR>
+
 " move vertically by visual line
 noremap j gj
 noremap k gk
 
-map <C-n> :NERDTreeToggle<CR>
+map <C-\> :NERDTreeToggle<CR>
 
 " move to beginning/end of a line
 nnoremap B ^
@@ -93,6 +110,9 @@ nnoremap gV `[v`]
 
 " map ,w to overwrite readonly hack
 nnoremap <leader>w :w !sudo tee %<CR>
+
+" vv to generate new vertical split
+nnoremap <silent> vv <C-w>v
 
 " configure fzf for vim
 set rtp+=/usr/local/opt/fzf
