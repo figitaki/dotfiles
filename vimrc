@@ -8,9 +8,28 @@ if (empty($TMUX))
   endif
 endif
 
-" Load pathogen.vim and all plugins
-call pathogen#infect()
-call pathogen#helptags()
+" Configure Vundle
+call plug#begin('~/.local/share/nvim/site/plugged')
+
+Plug 'joshdick/onedark.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+
+Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': './install.sh' }
+
+Plug 'reasonml-editor/vim-reason-plus'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+Plug 'benmills/vimux'
+
+Plug 'jparise/vim-graphql'
+
+call plug#end()
 
 syntax on
 colorscheme onedark       " cool colorscheme
@@ -27,7 +46,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set laststatus=2
 
-set nocompatible
 set hidden
 
 let mapleader=','       " leader is comma
@@ -114,5 +132,70 @@ nnoremap <leader>w :w !sudo tee %<CR>
 " vv to generate new vertical split
 nnoremap <silent> vv <C-w>v
 
+"""""""""""""""""""""""
+" Config for coc.nvim "
+"""""""""""""""""""""""
+
+" Some language servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c 
+
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostics-prev)
+nmap <silent> ]c <Plug>(coc-diagnostics-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> K :call CocAction('doHover')<CR>
+
+" Use `:Format` to format the current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
 " configure fzf for vim
 set rtp+=/usr/local/opt/fzf
+
+" configure ack.vim to use ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+nmap <C-p> :FZF<CR>

@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -82,8 +82,12 @@ eval $(thefuck --alias)
 eval "$(hub alias -s)"
 eval "$(rbenv init -)"
 
+alias vi='nvim'
+alias vim='nvim'
 alias vf='vim $(fzf)'
 alias todo='vim ~/.todo'
+alias ls='exa'
+alias ll='ls --long --header --git'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
