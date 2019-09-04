@@ -28,6 +28,8 @@ Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
 
 Plug 'jparise/vim-graphql'
+Plug 'pangloss/vim-javascript'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
