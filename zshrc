@@ -117,3 +117,6 @@ if [ -f '/Users/figitaki/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/figita
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/figitaki/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/figitaki/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/opt/node@12/bin:$PATH"
