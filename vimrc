@@ -115,7 +115,7 @@ noremap <leader>x :bd<CR>
 noremap j gj
 noremap k gk
 
-map <C-\> :NERDTreeToggle<CR>
+noremap <C-t> :NERDTreeToggle<CR>
 
 " move to beginning/end of a line
 nnoremap B ^

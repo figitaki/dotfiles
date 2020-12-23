@@ -120,3 +120,7 @@ if [ -f '/Users/figitaki/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/opt/node@12/bin:$PATH"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
