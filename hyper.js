@@ -1,13 +1,14 @@
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 13,
+    fontSize: 14,
 
     // font family with optional fallbacks
-    fontFamily: '"Menlo for Powerline", "DejaVu Sans Mono", "Lucida Console", monospace',
+    fontFamily: '"Menlo Nerd Font", "DejaVu Sans Mono", "Lucida Console", monospace',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: 'rgba(248,28,229,0.75)',
+    // cursorColor: 'rgba(248,28,229,0.75)',
+    cursorColor: '#262626',
 
     // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
     cursorShape: 'BLOCK',
@@ -54,9 +55,21 @@ module.exports = {
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
-    shell: 'zsh'
+    shell: 'zsh',
 
-    // for advanced config flags please refer to https://hyperterm.org/#cfg
+    // hyper-pane configuration
+    paneNavigation: {
+      showIndicators: false,
+      hotkeys: {
+        navigation: {
+          up: 'command+shift+j',
+          down: 'command+shift+k',
+          left: 'command+shift+h',
+          right: 'command+shift+l'
+        },
+        maximize: 'command+shift+z'
+      },
+    },
   },
 
   // a list of plugins to fetch and install from npm
@@ -65,7 +78,7 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ["hypercwd", "hyperterm-atom-dark", "hyperlinks"],
+  plugins: ["hypercwd", "hyperterm-atom-dark", "hyperlinks", "hyper-pane"],
 
   // in development, you can create a directory under
   // `~/.hyperterm_plugins/local/` and include it here

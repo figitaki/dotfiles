@@ -15,7 +15,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 
-Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': './install.sh' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 Plug 'reasonml-editor/vim-reason-plus'
 
@@ -23,6 +23,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
@@ -30,11 +31,16 @@ Plug 'benmills/vimux'
 Plug 'jparise/vim-graphql'
 Plug 'pangloss/vim-javascript'
 Plug 'mattn/emmet-vim'
+Plug 'rust-lang/rust.vim'
+
+Plug 'pantharshit00/vim-prisma'
+
+" Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
 syntax on
-colorscheme onedark       " cool colorscheme
+colorscheme onedark
 
 " Disable the background color
 highlight Normal ctermbg=none
