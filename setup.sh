@@ -73,6 +73,7 @@ install "vimrc"
 install "hyper.js"
 install "tmux.theme"
 install "tmux.conf"
+install "config/nvim"
 
 echo
 
