@@ -109,8 +109,6 @@ export PATH="/usr/local/opt/node@12/bin:$PATH"
 
 export WASMTIME_HOME="$HOME/.wasmtime"
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
 source $HOME/.cargo/env
@@ -120,7 +118,17 @@ export WASMER_DIR="/Users/figitaki/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/figitaki/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/figitaki/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/figitaki/src/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/figitaki/src/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/figitaki/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/figitaki/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/figitaki/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/figitaki/src/google-cloud-sdk/completion.zsh.inc'; fi
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# bun completions
+[ -s "/Users/figitaki/.bun/_bun" ] && source "/Users/figitaki/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -11,35 +11,51 @@ endif
 " Configure Vundle
 call plug#begin('~/.local/share/nvim/site/plugged')
 
-Plug 'joshdick/onedark.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/AutoClose'
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-Plug 'reasonml-editor/vim-reason-plus'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'benmills/vimux'
 
 Plug 'jparise/vim-graphql'
 Plug 'pangloss/vim-javascript'
 Plug 'mattn/emmet-vim'
 Plug 'rust-lang/rust.vim'
-
 Plug 'pantharshit00/vim-prisma'
 
-" Plug 'vim-syntastic/syntastic'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'navarasu/onedark.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'mfussenegger/nvim-dap'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-neorg/neorg'
+Plug 'Pocco81/true-zen.nvim'
+Plug 'ggandor/leap.nvim'
+Plug 'kevinhwang91/nvim-bqf'
+Plug 'lewis6991/gitsigns.nvim'
+
+Plug 'vim-denops/denops.vim'
+Plug 'skanehira/denops-graphql.vim'
+
+Plug 'vimpostor/vim-tpipeline'
 
 call plug#end()
 
 syntax on
+let g:onedark_config = {
+  \ 'style': 'darker',
+\}
 colorscheme onedark
 
 " Disable the background color
@@ -73,21 +89,19 @@ set listchars=eol:¬,tab:»-,space:·
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
-" Shortcut to launch Vimux prompt
-map <leader>vp :VimuxPromptCommand<CR>
-map <leader>vl :VimuxRunLastCommand<CR>
-
-set number              " enable line numbers
-set cursorline          " highlights current row
-set wildmenu            " visual autocomplete for command menu
-set lazyredraw          " redraw only when we need to
-set showmatch           " highlight matching []/{}/()
+set number relativenumber " enable line numbers
+set cursorline            " highlights current row
+set wildmenu              " visual autocomplete for command menu
+set lazyredraw            " redraw only when we need to
+set showmatch             " highlight matching []/{}/()
 
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
 " turn off search highlighting
 nnoremap <leader><space> :nohlsearch<CR>
+
+set scrolloff=30         " keep 30 lines above/below cursor
 
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
@@ -113,15 +127,15 @@ set splitbelow
 set splitright
 
 " easier buffer navigations
-noremap <leader>] :bn<CR>
-noremap <leader>[ :bp<CR>
-noremap <leader>x :bd<CR>
+noremap <leader>] :BufferNext<CR>
+noremap <leader>[ :BufferPrev<CR>
+noremap <leader>x :BufferClose<CR>
 
 " move vertically by visual line
 noremap j gj
 noremap k gk
 
-noremap <C-t> :NERDTreeToggle<CR>
+noremap <C-t> :NvimTreeToggle<CR>
 
 " move to beginning/end of a line
 nnoremap B ^
@@ -139,6 +153,15 @@ nnoremap <leader>w :w !sudo tee %<CR>
 
 " vv to generate new vertical split
 nnoremap <silent> vv <C-w>v
+
+""""""""""""""""""""
+" Config for neorg "
+""""""""""""""""""""
+
+nnoremap <leader>n :Neorg workspace notes<CR>
+
+" ToggleTermVisual Selection
+vnoremap <leader>t :ToggleTermSendVisualSelection<CR>
 
 """""""""""""""""""""""
 " Config for coc.nvim "
@@ -161,21 +184,26 @@ set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#previous(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostics-prev)
@@ -206,4 +234,122 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+"""""""""""""""""
+" NeoVim Config "
+"""""""""""""""""
+
+if has('nvim')
+lua <<EOF
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "javascript", "typescript", "graphql", "vim", "lua" },
+
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+  }
+}
+
+-- empty setup using defaults
+require('nvim-tree').setup()
+
+local nvim_tree_events = require('nvim-tree.events')
+local bufferline_api = require('bufferline.api')
+
+local function get_tree_size()
+  return require'nvim-tree.view'.View.width
+end
+
+nvim_tree_events.subscribe('TreeOpen', function()
+  bufferline_api.set_offset(get_tree_size())
+end)
+
+nvim_tree_events.subscribe('Resize', function()
+  bufferline_api.set_offset(get_tree_size())
+end)
+
+nvim_tree_events.subscribe('TreeClose', function()
+  bufferline_api.set_offset(0)
+end)
+
+require("toggleterm").setup{
+  open_mapping = [[<c-\>]],
+  direction = 'horizontal',
+  size = 20
+}
+
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  -- vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+  -- vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  -- vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+  -- vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+  -- vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+end
+
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  hidden = true,
+  direction = "float"
+})
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap(
+  "n", "<leader>g",
+  "<cmd>lua _lazygit_toggle()<CR>",
+  {noremap = true, silent = true}
+)
+
+require("true-zen").setup{
+  -- true-zen config
+}
+
+require("nvim-treesitter.install").compilers = { "gcc-12" }
+require('neorg').setup {
+  load = {
+    ["core.defaults"] = {}, -- Loads default behaviour
+    ["core.keybinds"] = {
+      config = {
+        hook = function(keybinds)
+          keybinds.map(
+            "norg", "n", "<C-l>o",
+            "<cmd>Neorg keybind all core.looking-glass.magnify-code-block"
+          )
+          keybinds.remap("norg", "n", "<Leader>n", "core.neorgcmd.commands.return")
+        end,
+      },
+    },
+    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+    ["core.integrations.truezen"] = {}, -- Adds support for true-zen integration
+    ["core.dirman"] = { -- Manages Neorg workspaces
+      config = {
+        workspaces = {
+          notes = "~/notes",
+          lassie = "~/src/lassie/notes"
+        },
+      },
+    },
+  },
+}
+
+local nvimTree = require("nvim-tree.api")
+vim.keymap.set({'n', 'v', 'i'}, '<C-t>', nvimTree.tree.toggle)
+
+require('leap').add_default_mappings()
+
+-- setup gitsigns
+require('gitsigns').setup()
+EOF
+endif
+
 nmap <C-p> :FZF<CR>
+

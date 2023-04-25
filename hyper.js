@@ -78,10 +78,10 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ["hypercwd", "hyperterm-atom-dark", "hyperlinks", "hyper-pane"],
+  plugins: ["hypercwd", "hyperlinks", "hyper-pane"],
 
   // in development, you can create a directory under
   // `~/.hyperterm_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
-  localPlugins: []
+  localPlugins: ["hyperterm-one-dark"]
 };
