@@ -2,6 +2,16 @@
   "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript"],
   "prettier.eslintIntegration": true,
   "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    },
     "graphql": {
       "command": "graphql-lsp",
       "args": ["server", "-m", "stream"],
@@ -24,5 +34,6 @@
         }
       }
     }
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
