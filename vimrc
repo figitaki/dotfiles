@@ -32,7 +32,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'pantharshit00/vim-prisma'
 Plug 'hashivim/vim-terraform'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'navarasu/onedark.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
