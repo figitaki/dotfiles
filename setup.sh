@@ -1,17 +1,17 @@
 #!/bin/sh
 
-#
+##
 # Script for setting up my development environment
 # Author: Carey Janecka <careyjanecka@gmail.com>
 #
 # USAGE
 #
 # $ ./setup.sh
-#
+##
 
-#
+##
 # Colors
-#
+##
 
 bold=$(tput bold)
 underline=$(tput sgr 0 1)
@@ -24,9 +24,9 @@ purple=$(tput setaf 5)
 grey=$(tput setaf 242)
 blue=$(tput setaf 14)
 
-#
+##
 # Headers and logging
-#
+##
 
 header() { 
   printf "\n${purple}============ ${bold}%s${reset}${purple} ============${reset}\n\n" "$@"
@@ -44,9 +44,10 @@ error() {
   printf "${bold}${red}✖${reset} $@\n"
 }
 
-#
-# Helper functions
-#
+##
+# Install the specified dotfile using symbolic links.
+# Supports backing up existing configuration files.
+##
 
 install() {
   if [ -f "$HOME/.$@" ] && [ ! -L "$HOME/.$@" ]; then
@@ -62,9 +63,9 @@ install() {
   fi
 }
 
-#
+##
 # Install dotfiles
-#
+##
 
 header "Installing dotfiles"
 
@@ -74,7 +75,8 @@ install "hyper.js"
 install "tmux.theme"
 install "tmux.conf"
 install "config/nvim"
-install "oh-my-zsh/custom"
+install "oh-my-zsh/custom/*"
+install "tmux"
 
 echo
 

@@ -20,6 +20,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -31,6 +32,7 @@ Plug 'mattn/emmet-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'pantharshit00/vim-prisma'
 Plug 'hashivim/vim-terraform'
+Plug 'lervag/vimtex'
 
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'navarasu/onedark.nvim'
