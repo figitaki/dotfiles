@@ -50,7 +50,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn npm node sudo fasd zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git yarn npm node sudo tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,8 +92,6 @@ alias ls='exa'
 alias ll='ls --long --header --git'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-alias z='fasd_cd -d'
 
 # opam configuration
 test -r /Users/figitaki/.opam/opam-init/init.zsh && . /Users/figitaki/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -148,3 +146,11 @@ PERL5LIB="/Users/figitaki/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL
 PERL_LOCAL_LIB_ROOT="/Users/figitaki/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/Users/figitaki/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/figitaki/perl5"; export PERL_MM_OPT;
+
+# setup zoxide
+eval "$(zoxide init zsh)"
+
+# setup nvm
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
