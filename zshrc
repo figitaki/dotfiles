@@ -50,7 +50,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn npm node sudo tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git yarn npm node sudo tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,16 +79,11 @@ export EDITOR='nvim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Use hub in place of git
-eval $(thefuck --alias)
-eval "$(hub alias -s)"
-eval "$(rbenv init -)"
-
 alias vi='nvim'
 alias vim='nvim'
 alias vf='vim $(fzf)'
-alias todo='vim ~/.todo'
-alias ls='exa'
+alias todo='vim ~/.todo.norg'
+alias ls='eza'
 alias ll='ls --long --header --git'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -96,17 +91,8 @@ alias ll='ls --long --header --git'
 # opam configuration
 test -r /Users/figitaki/.opam/opam-init/init.zsh && . /Users/figitaki/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-# Initialize fastlane
-export PATH="$HOME/.fastlane/bin:$PATH"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/node@12/bin:$PATH"
-
+# washtime
 export WASMTIME_HOME="$HOME/.wasmtime"
-
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
 source $HOME/.cargo/env
@@ -115,24 +101,12 @@ source $HOME/.cargo/env
 export WASMER_DIR="/Users/figitaki/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/figitaki/src/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/figitaki/src/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/figitaki/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/figitaki/src/google-cloud-sdk/completion.zsh.inc'; fi
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 # bun completions
 [ -s "/Users/figitaki/.bun/_bun" ] && source "/Users/figitaki/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
 
 # pnpm
 export PNPM_HOME="/Users/figitaki/Library/pnpm"
@@ -150,7 +124,4 @@ PERL_MM_OPT="INSTALL_BASE=/Users/figitaki/perl5"; export PERL_MM_OPT;
 # setup zoxide
 eval "$(zoxide init zsh)"
 
-# setup nvm
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -f "/Users/figitaki/.ghcup/env" ] && . "/Users/figitaki/.ghcup/env" # ghcup-env

@@ -1,0 +1,16 @@
+import = ["/Users/figitaki/.config/alacritty/themes/themes/one_dark.toml"]
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "MesloLGS Nerd Font"
+style = "Regular"
+
+[window]
+decorations = "buttonless"
+option_as_alt = "Both"
+
+[window.dimensions]
+columns = 124
+lines = 52

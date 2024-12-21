@@ -75,7 +75,8 @@ install "hyper.js"
 install "tmux.theme"
 install "tmux.conf"
 install "config/nvim"
-install "oh-my-zsh/custom/*"
+install "config/alacritty"
+install "oh-my-zsh/custom/plugins/*"
 install "tmux"
 
 echo
