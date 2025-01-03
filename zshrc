@@ -50,7 +50,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn npm node sudo tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode asdf)
+plugins=(git yarn npm node sudo tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode asdf gcloud)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,6 +85,7 @@ alias vf='vim $(fzf)'
 alias todo='vim ~/.todo.norg'
 alias ls='eza'
 alias ll='ls --long --header --git'
+alias b='bun'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -125,3 +126,4 @@ PERL_MM_OPT="INSTALL_BASE=/Users/figitaki/perl5"; export PERL_MM_OPT;
 eval "$(zoxide init zsh)"
 
 [ -f "/Users/figitaki/.ghcup/env" ] && . "/Users/figitaki/.ghcup/env" # ghcup-env
+source /Users/figitaki/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

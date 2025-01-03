@@ -1,3 +1,4 @@
+[general]
 import = ["/Users/figitaki/.config/alacritty/themes/themes/one_dark.toml"]
 
 [font]
