@@ -1,5 +1,9 @@
 font-size = 14
 font-family = "MesloLGS Nerd Font Mono"
 macos-titlebar-style = "hidden"
-window-decoration = false
 theme = "one_dark"
+window-decoration = false
+window-width = 169
+window-height = 60
+window-padding-x = 0
+window-padding-y = 0
