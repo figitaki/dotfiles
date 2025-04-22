@@ -126,3 +126,8 @@ PERL_MM_OPT="INSTALL_BASE=/Users/figitaki/perl5"; export PERL_MM_OPT;
 eval "$(zoxide init zsh)"
 
 [ -f "/Users/figitaki/.ghcup/env" ] && . "/Users/figitaki/.ghcup/env" # ghcup-env
+
+. "$HOME/.local/bin/env"
+
+# Added by Windsurf
+export PATH="/Users/figitaki/.codeium/windsurf/bin:$PATH"
