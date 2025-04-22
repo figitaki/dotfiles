@@ -86,6 +86,7 @@ alias todo='vim ~/.todo.norg'
 alias ls='eza'
 alias ll='ls --long --header --git'
 alias b='bun'
+alias tmux='tmux -2'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
