@@ -77,6 +77,7 @@ install "tmux.conf"
 install "config/ghostty"
 install "config/nvim"
 install "config/alacritty"
+install "config/emacs"
 install "oh-my-zsh/custom/plugins/*"
 install "tmux"
 

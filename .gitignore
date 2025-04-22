@@ -1,3 +1,9 @@
 *.swp
 *.vim
 tmux/plugins
+
+# emacs.d
+eln-cache/
+auto-save-list/
+*~
+elpa/
