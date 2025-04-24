@@ -34,7 +34,7 @@
   (package-install 'evil))
 
 (require 'evil)
-(evil-mode 0)
+(evil-mode 1)
 
 (autoload 'gerbil-mode "gerbil-mode" "Gerbil editing mode." t)
 
@@ -42,8 +42,6 @@
   (expand-file-name "/opt/homebrew/bin/gxi")) ; default installation, adjust for your GERBIL_INSTALL_PREFIX
 (setq scheme-program-name gerbil-program-name)
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((scheme . t))
- '((ruby . t))
- '((python . t)))
+(menu-bar-mode)
+(global-display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
