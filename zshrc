@@ -1,7 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/go/bin:/usr/local/bin:/usr/local/go/bin:$PATH
-
-export PATH=$HOME/src/golassie/development/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:/usr/local/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -50,7 +48,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn npm node sudo tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode asdf gcloud)
+plugins=(git npm node sudo tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode gcloud)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,21 +88,8 @@ alias tmux='tmux -2'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# opam configuration
-test -r /Users/figitaki/.opam/opam-init/init.zsh && . /Users/figitaki/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# washtime
-export WASMTIME_HOME="$HOME/.wasmtime"
-export PATH="$WASMTIME_HOME/bin:$PATH"
-
-source $HOME/.cargo/env
-
-# Wasmer
-export WASMER_DIR="/Users/figitaki/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
-
 # bun completions
-[ -s "/Users/figitaki/.bun/_bun" ] && source "/Users/figitaki/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -117,18 +102,12 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-PATH="/Users/figitaki/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/figitaki/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/figitaki/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/figitaki/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/figitaki/perl5"; export PERL_MM_OPT;
 
 # setup zoxide
 eval "$(zoxide init zsh)"
 
+# Haskell
 [ -f "/Users/figitaki/.ghcup/env" ] && . "/Users/figitaki/.ghcup/env" # ghcup-env
 
-. "$HOME/.local/bin/env"
-
-# Added by Windsurf
-export PATH="/Users/figitaki/.codeium/windsurf/bin:$PATH"
+# uv (python)
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
